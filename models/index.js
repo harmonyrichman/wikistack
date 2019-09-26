@@ -22,6 +22,7 @@ const Page = db.define("page", {
   }
 });
 
+
 const User = db.define("user", {
   name: {
     type: Sequelize.STRING,
@@ -35,5 +36,15 @@ const User = db.define("user", {
     }
   }
 });
+
+Page.beforeValidate((page) => {
+  
+  console.log('preslug', page.slug);
+
+  page.slug = page.title.replace(/\s+/g, '_').replace(/\W/g, '');
+
+  console.log('post-slug', page.slug);
+  return page.slug;
+})
 
 module.exports = { db, Page, User };

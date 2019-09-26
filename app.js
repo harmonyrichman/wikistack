@@ -40,7 +40,7 @@ const PORT = 3000;
 // Sync up database and confirm we are connected to the port
 const startUp = async () => {
   // sync up whole database based on the models in our models/index.js file. If we ever change how our models' attributes or options are defined, force: true drops the old version of the models and reinstantiates the new versions of the models
-  await db.sync({force: true});
+  await db.sync();
   app.listen(PORT, () => {
     console.log(`App listening in port ${PORT}`);
     //this helps us 'listen' to the PORT and provides the localhost link
